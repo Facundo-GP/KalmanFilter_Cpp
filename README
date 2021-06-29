@@ -1,7 +1,0 @@
-Implementation of Kalman filter and Extended Kalman Filter on C++, implementing too matrix TAD and all matrix operations necessaries to implement Kalman FIlter.
-
-The repository contains the source code of Matrix module (matrix.cpp) and Kalman Filter operations module (kalman.cpp) on source/ directory. Headers files are in include/ directory.
-
-There are also some examples of use on examples/ directory.
-
-
