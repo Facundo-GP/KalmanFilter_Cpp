@@ -1,5 +1,7 @@
 
 
+
+
 # Kalman filter and Extended Kalman FIter implemented on C++
 
  <br>
@@ -48,29 +50,18 @@ For the state space representations of variables that Kalman filter use, the fol
  <br>
 
 
-$$
-\begin{equation}
-    \begin{cases}
-      x_{k+1} = \Phi x_{k}+ w_{k} \\
-      y_{k} = Cx_{k}+v_{k}
-    \end{cases}\,.
-\end{equation}
-$$
+![Demostration](https://drive.google.com/uc?export=view&id=1gfH2q1sz3MSRzHJMVrn0MFkCXUuhvYs9)
+
 
  <br>
 
-Autocorrelation matrices of $v_{k}$ and $w_{k}$ will be denoted R and Q respectly.
+Autocorrelation matrices of vk and wk will be denoted R and Q respectly.
 
 Finally, for EKF model, we will use:
 
  <br>
 
-\begin{equation}
-    \begin{cases}
-      \mathbf{x}_{k+1} = \mathbf{f}_{k}(\mathbf{x}_{k},\mathbf{w}_{k}) \\
-      \mathbf{y}_{k} = \mathbf{h}_{k}(\mathbf{x}_{k},\mathbf{v}_{k})  \\
-    \end{cases}\,.
-\end{equation}
+![Demostration](https://drive.google.com/uc?export=view&id=15pWBq5VsvSmy7Pgf-uxLUMu0MPhvBsh3)
 
  <br>
 
@@ -327,11 +318,4 @@ The rest of the implementation is equal to the sinusoidal example. Values used t
 ![Demostration](https://drive.google.com/uc?export=view&id=1QA1oxbRlMf7DLzVpkw8T2DyDHiHZSm3u)
 
 
-The ratio of the momentum to the velocity is
-the relativistic mass, m.
-
-![f1](http://chart.apis.google.com/chart?cht=tx&chl=m=\\frac{m_0}{\\sqrt{1-{\\frac{v^2}{c^2}}}})
-
-And the relativistic mass and the relativistic
-kinetic energy are related by the formula:
 
