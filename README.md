@@ -15,6 +15,16 @@ Information about what all the functions implemented do is on .h header files of
 
 For compilation you can build a make file or if you using g++ compile with g++  source/matrix.cpp source/kalman.cpp your_program.cpp -o executable
 
+
+ <br>
+
+## examples directory
+
+Contains the .cpp files of all examples named on "Examples of use" section.
+
+ <br>
+
+
  <br>
 
 ## source directory
@@ -95,7 +105,7 @@ Let's suppose that you want to estimate the coefficients of a linear model, this
 
  <br>
 
-In this case,[r,p] transpose is your state vector and vk white Gaussian noise with 0 mean and 1 variance.
+In this case,[r,p] transpose is your state vector and vk white Gaussian noise with  mean 0 and variance 9.
 This model represents a linear equation. The objective is then estimating pk state who is supposed constant, and represents the slope of the line.
 
 So all you need to specify to the function is the values of C, Phi ,R and Q matrices and the prior of the state and P error matrix, who is shown in the following code:
