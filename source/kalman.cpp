@@ -405,21 +405,13 @@ TMatrix EKF(TMatrix I, TMatrix P_prior, TMatrix Q, TMatrix R,TMatrix y,TMatrix x
 
     TMatrix C_k = evaluate_function(C);
     TMatrix U_k = evaluate_function(U);
-    /*
-    printf("C: \n");
-    display_matrix(C_k);
-     
-    printf("P: \n");
-    display_matrix(P_c);
-*/
+ 
     
     TMatrix K = EKF_gain(P_c,C_k,R,U_k);
     TMatrix y_pred = evaluate_function(yk);
     TMatrix yk_m = sub_column(y,0);
-/*
-    printf("K: \n");
-    display_matrix(K);
-  */  TMatrix xk_updated = EKF_update_state(xk_c,K,yk_m,y_pred); 
+
+    TMatrix xk_updated = EKF_update_state(xk_c,K,yk_m,y_pred); 
     TMatrix P_updated = update_P(I,P_c,K,C_k);
     
 
@@ -444,10 +436,7 @@ TMatrix EKF(TMatrix I, TMatrix P_prior, TMatrix Q, TMatrix R,TMatrix y,TMatrix x
         insert_data(out_matrix,j,0,get_data(xk_updated,j-rows(y),0));
       }
     }
- /*   
-    printf("x_projected: \n");
-    display_matrix(x_projected);
-*/
+
     delete_matrix(xk_c);
     delete_matrix(P_c);
     delete_matrix(C_k);
@@ -474,18 +463,9 @@ TMatrix EKF(TMatrix I, TMatrix P_prior, TMatrix Q, TMatrix R,TMatrix y,TMatrix x
      
       C_k = evaluate_function(C);
       U_k = evaluate_function(U);
-      /*
-      printf("C: \n");
-      display_matrix(C_k);
-     
-      printf("P: \n");
-      display_matrix(P_c);
-*/
+
       K = EKF_gain(P_c,C_k,R,U_k);
-   /*  
-      printf("K: \n");
-      display_matrix(K);
-     */ 
+
       y_pred = evaluate_function(yk);
       yk_m = sub_column(y,i);
 
