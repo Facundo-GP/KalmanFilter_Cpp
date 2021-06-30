@@ -22,7 +22,6 @@ For compilation you can build a make file or if you using g++ compile with g++  
 
 Contains the .cpp files of all examples named on "Examples of use" section.
 
- <br>
 
 
  <br>
