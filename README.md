@@ -13,6 +13,8 @@ The objective of this project is to implement a Kalman filter on C++, for this, 
 
 Information about what all the functions implemented do is on .h header files of next modules.
 
+For compilation you can build a make file or if you using g++ compile with g++  source/matrix.cpp source/kalman.cpp your_program.cpp -o executable
+
  <br>
 
 ## source directory
