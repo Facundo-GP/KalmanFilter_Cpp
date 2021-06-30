@@ -2,7 +2,7 @@
 
 
 
-# Kalman filter and Extended Kalman FIter implemented on C++
+# Kalman Filter and Extended Kalman Filter implemented on C++
 
  <br>
 
@@ -237,27 +237,20 @@ You can save the result like on linear model example and plot it, in this case E
 
 ## Second order system
 
-For  last example, suppose that you want to estimate the $\xi$ , A and Wn of this second order system assuming that $ \xi << 1 $:
+For  last example, suppose that you want to estimate the ξ , A and Wn of this second order system assuming that ξ << 1 and 0 < ξ < 1 :
 
 <br>
 <br>
 
 
-$$A. \frac{1}{s^{2}+2\xi w_{n} + w_{n}^{2}}$$
+![E9](https://drive.google.com/uc?export=view&id=1qQU3moArH6QHDzSoxptb8TtrJZx-4e_A)
+
 
 <br>
 <br>
 
 
----
-
-
-$$ 0 < \xi < 1$$
-
-<br>
-<br>
-
-For this, you measure the step response which assuming $\xi << 1$ can be expressed in a state space model like this:
+For this, you measure the step response which assuming ξ << 1 can be expressed in a state space model like this:
 
 
 
@@ -265,23 +258,16 @@ For this, you measure the step response which assuming $\xi << 1$ can be express
 <br>
 
 
-$$
-\begin{equation}
-    \begin{cases}
-      A_{k+1} = A_{k} \\
-      \xi_{k+1} =  \xi_{k} \\
-      Wn_{k+1} = Wn_{k} \\
-      y_{k} = A_{k} - A_{k}e^{-\xi_{k}Wn_{k}k}sin(Wn_{k}k+arctan(\frac{1}{\xi_{k}})) +v_{k}
-    \end{cases}\,.
-\end{equation}
-$$
+![E10](https://drive.google.com/uc?export=view&id=1GpQTFV7AYgiWgPLAVWH_P6xv9VZ-n3_x)
+
+
 
 <br>
 <br>
 
-Where $v_{k}$ is white Gaussian noise of mean 0 and variance 4.
+Where vk is white Gaussian noise of mean 0 and variance 4.
 
-In this model, the state vector is $[A_{k},\xi_{k},Wn_{k}]$. Since you know that $\xi$ is between 0 and 1, you can put it as a restriction on the state evolution function as follows:
+In this model, the state vector is [Ak,ξk,Wnk] transpose. Since you know that $\xi$ is between 0 and 1, you can put it as a restriction on the state evolution function as follows:
 
 
 
@@ -297,7 +283,7 @@ In this model, the state vector is $[A_{k},\xi_{k},Wn_{k}]$. Since you know that
 
 
 
-The rest of the implementation is equal to the sinusoidal example. Values used to generate the signal were 6 for A, 0.1 for $\xi$ and 15 for Wn, while the estimated by EKF were 8.04 for A, 0.107 for $\xi$ and 14.83 for Wn.
+The rest of the implementation is equal to the sinusoidal example. Values used to generate the signal were 6 for A, 0.1 for ξ and 15 for Wn, while the estimated by EKF were 8.04 for A, 0.107 for ξ and 14.83 for Wn.
 
 <br>
 <br>
