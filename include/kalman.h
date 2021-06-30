@@ -3,31 +3,29 @@
 typedef struct _rep_kalman_f* TEKF_func;
 
 
-/*Returns a TEKF_func type used to describe C, F, G,U ,xk and yk evolution over iterations of EKF*/
-/*len is the number of states*/
-/*Precondition: params has len elements*/
+/*Returns a TEKF_func type used to describe C, Phi, G,U ,xk and yk evolution over iterations of EKF*/
+/*params has at least states vector size*/
 TEKF_func create_kalman_f(TMatrix params, nat iter_param,TMatrix (*f)(TMatrix,nat));
 
-
+/*Update parameters of EKF_f*/
 void replace_f_params(TEKF_func EKF_f , TMatrix params, nat iter_params);
 
-
+/*Evaluates the EKF_f function with the actual parameters*/
 TMatrix evaluate_function(TEKF_func EKF_f);
 
-
+/*Deltes EKF_f*/
 void delete_EKF(TEKF_func EKF_f);
 
-
-
+/*Returns a TMatrix with EKF_f parameters*/
 TMatrix get_params(TEKF_func EKF_f);
 
-
-
+/*Computes the Kalman gain for EKF*/
 TMatrix EKF_gain(TMatrix P, TMatrix C, TMatrix R, TMatrix U);
 
-
+/*Updates state of EKF*/
 TMatrix EKF_update_state(TMatrix xk, TMatrix K, TMatrix yk,TMatrix y_pred);
 
+/*Project P with a EKF model*/
 TMatrix EKF_P_projection(TMatrix P, TMatrix Phi, TMatrix G,TMatrix Q);
 
 
@@ -42,6 +40,7 @@ TMatrix update_state(TMatrix xk, TMatrix K, TMatrix yk, TMatrix C);
 
 /*Update P estimation*/
 /*Preconditions I nxn , P nxn, K nxm,  C mxn */
+/*I nxn identity*/
 TMatrix update_P(TMatrix I, TMatrix P, TMatrix K, TMatrix C);
 
 
@@ -56,11 +55,8 @@ TMatrix P_projection(TMatrix P, TMatrix Q, TMatrix Phi);
 
 
 /*Return the kalman filter output for yk samples */
-
-
 /*Precondition: I nxn, P nxn, Q nxn, Phi nxn, xk nx1 , yk  m x num_samples, R mxm 
               C mxn num_samples > 0*/
-
 
 TMatrix Kalman_filter(TMatrix I, TMatrix P, TMatrix Q, TMatrix Phi, 
 		     TMatrix xk, TMatrix y, TMatrix C,
@@ -80,11 +76,13 @@ TMatrix get_state(TMatrix KF_out, nat signal_rows_dim);
 
 /*Return the EKF output for yk samples */
 
-/*C and xk are functions that implement the update rule of the non linear problem i.e the first order aproximation used to aproximate C and xk*/
-/*double* params are the params of the function and nat the len of double* */
+/*C, Phi, G, U ,xk and yk are TEKF_func that have functions that implement the update rule of the non linear problem i.e the first order aproximation 
+used to aproximate C, Phi,G, U, xk and yk*/
 
-/*Precondition: I nxn, P nxn, Q nxn, Phi nxn, xk nx1 , yk  m x num_samples, R mxm 
-              C mxn num_samples > 0*/
+/*P_prior and x_pior contains the initial values of states and P*/
+/*X_prior must be passed to all TEKF_func variables before calling EKF*/
+
+/*Precondition: I nxn, P nxn, Q nxn, Phi nxn, xk nx1 , yk  m x num_samples, R mxm ,C mxn */
 
 
 TMatrix EKF(TMatrix I, TMatrix P_prior, TMatrix Q, TMatrix R,TMatrix y,
