@@ -50,7 +50,7 @@ For the state space representations of variables that Kalman filter use, the fol
  <br>
 
 
-![Demostration](https://drive.google.com/uc?export=view&id=1gfH2q1sz3MSRzHJMVrn0MFkCXUuhvYs9)
+![E1](https://drive.google.com/uc?export=view&id=1gfH2q1sz3MSRzHJMVrn0MFkCXUuhvYs9)
 
 
  <br>
@@ -61,18 +61,22 @@ Finally, for EKF model, we will use:
 
  <br>
 
-![Demostration](https://drive.google.com/uc?export=view&id=15pWBq5VsvSmy7Pgf-uxLUMu0MPhvBsh3)
+![E2](https://drive.google.com/uc?export=view&id=15pWBq5VsvSmy7Pgf-uxLUMu0MPhvBsh3)
 
  <br>
 
 And the jacobian matrices:
 
  <br>
+
  
- $$\mathbf{\Phi}_{k} = \frac{\partial\mathbf{f}_{k}}{\partial \mathbf{x}}(\hat{\mathbf{x}}_{k},0) \ \ \ \ \  \  \ \ \ \ \ \ \ \ \ \ \ \mathbf{G}_{k} = \frac{\partial\mathbf{f}_{k}}{\partial \mathbf{w}}(\hat{\mathbf{x}}_{k},0)  $$
-
-  $$\mathbf{C}_{k} = \frac{\partial\mathbf{h}_{k}}{\partial \mathbf{x}}(\mathbf{\hat{x}}^{-}_{k},0)  \ \ \ \ \  \  \ \ \ \ \ \ \ \ \ \ \ \mathbf{U}_{k} = \frac{\partial\mathbf{h}_{k}}{\partial \mathbf{v}}(\mathbf{\hat{x}}^{-}_{k},0)$$
-
+ ![E3](https://drive.google.com/uc?export=view&id=1wCIzRkDw5uPmhP38kB2-Fv1Vkj2ib6Xd)
+ 
+  <br>
+  
+  
+ ![E4](https://drive.google.com/uc?export=view&id=19G1NzqCd_qH48Rp42Qi7nUs0IwNLb3HV)
+ 
  <br>
 
 ## Linear model
@@ -83,27 +87,21 @@ Let's suppose that you want to estimate the coefficients of a linear model, this
 
  <br>
 
-$$
-\begin{equation}
-    \begin{cases}
-      r_{k+1} = r_{k}+ p_{k} \\
-      p_{k+1} =  p_{k} \\
-      y_{k} = p_{k}+v_{k}
-    \end{cases}\,.
-\end{equation}
-$$
-
- <br>
-
-In this case, your state vector is $[r,p]^{T}$ and $v_{k}$ white Gaussian noise with 0 mean and 1 variance.
-This model represents a linear equation. The objective is then estimating $p_{k}$ state who is supposed constant, and represents the slope of the line.
-
-So all you need to specify to the function is the values of C,$\Phi$,R and Q matrices and the prior of the state and P error matrix, who is shown in the following code:
+![E5](https://drive.google.com/uc?export=view&id=1z9Usgy4UmrqIZ6pFK88gj23xmxpKjduJ)
+ 
 
 
  <br>
 
-![Demostration](https://drive.google.com/uc?export=view&id=194Y5wn_monaPXIfNAiVB6VNTAcgli9m-)
+In this case,[r,p] transpose is your state vector and vk white Gaussian noise with 0 mean and 1 variance.
+This model represents a linear equation. The objective is then estimating pk state who is supposed constant, and represents the slope of the line.
+
+So all you need to specify to the function is the values of C, Phi ,R and Q matrices and the prior of the state and P error matrix, who is shown in the following code:
+
+
+ <br>
+
+![Code_linear1](https://drive.google.com/uc?export=view&id=194Y5wn_monaPXIfNAiVB6VNTAcgli9m-)
 
 
  <br>
@@ -115,7 +113,7 @@ Finally,call the Kalman Filter function and obtain the output signal and outputs
 <br>
 <br>
 
-![Demostration](https://drive.google.com/uc?export=view&id=1i6ioGYe5l978hsp2w1SwodKS-bepQksR)
+![Code_linear2](https://drive.google.com/uc?export=view&id=1i6ioGYe5l978hsp2w1SwodKS-bepQksR)
 
  <br>
   <br>
@@ -132,13 +130,13 @@ Finally, the slope found by the filter is 0.066 for the and here are the evoluti
 <br>
 <br>
 
-![Demostration](https://drive.google.com/uc?export=view&id=1VkvEppbU7yFRZkLcvo4bKnHUCGSAlVBn)
+![Signal_linear](https://drive.google.com/uc?export=view&id=1VkvEppbU7yFRZkLcvo4bKnHUCGSAlVBn)
 
  <br>
  <br> 
  <br>
 
-![Demostration](https://drive.google.com/uc?export=view&id=1i4luAAebZvpbaTyTfpqytUm6aHwt1RYw)
+![States_linear](https://drive.google.com/uc?export=view&id=1i4luAAebZvpbaTyTfpqytUm6aHwt1RYw)
 
 
 <br>
@@ -158,23 +156,21 @@ This problem can be represented in state space as follows:
 <br>
 
 
-$$
-\begin{equation}
-    \begin{cases}
-      A_{k+1} = A_{k} \\
-      \phi_{k+1} =  \phi_{k} \\
-      y_{k} = A_{k}sin(w*k + \phi_{k})+v_{k}
-    \end{cases}\,.
-\end{equation}
-$$
+![E6](https://drive.google.com/uc?export=view&id=1Uk-L4xLlANJdpdwTiXkbZblj1fRVruLs)
+
 
 <br>
 <br>
 
-So, C matrix is $[sin(w.k+\phi_{k}) , A_{k}cos(w.k+\phi_{k})]$ , $
-\Phi$ and U are the identity matrix, Q is the zero matrix and output observation is $A_{k}sin(w.k+\phi_{k})$.
+So, C matrix is:
 
-Since you are working with EKF, matrices and evolution functions may be of TEKF_func type. Assuming a frequency of $ \\ \pi /5 \\ $ and a sample_rate of 0.25 you can write it as follows:
+![E7](https://drive.google.com/uc?export=view&id=1LWJKm6TfgfJNtnzSgpGe6cE9lThnyQnL)
+
+Phi and U are the identity matrix, Q is the zero matrix and observed output is:
+
+![E8](https://drive.google.com/uc?export=view&id=1kJlzZeZTx3t82lzTDdqoY8PdGERw6qpU)
+
+Since you are working with EKF, matrices and evolution functions may be of TEKF_func type. Assuming a frequency of pi/5  and a sample_rate of 0.25 you can write it as follows:
 
 
 <br>
@@ -215,7 +211,7 @@ As on linear model, I is the identity of size (n_states, n_states).
 It's important to make a difference, while "y" parameter is a TMatrix variable containing the measured function, "yk" is a TEKF_func variable who haves the observed output evolution function y_k inside.
 
 
-You can save the result like on linear model example and plot it, in this case EKF estimates 1.907 for amplitude and 1.09 for phase, while true values were 2 for amplitude and $\\ \pi / 3 \\ $ for phase.
+You can save the result like on linear model example and plot it, in this case EKF estimates 1.907 for amplitude and 1.09 for phase, while true values were 2 for amplitude and pi/3 for phase.
 
 
 <br>
