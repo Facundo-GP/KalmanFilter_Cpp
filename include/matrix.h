@@ -7,31 +7,30 @@ typedef unsigned int nat;
 typedef struct _rep_matrix * TMatrix;
 
 
-/*Create an empty matrix of size with n rows and m columns
-Precondition: n, m > 0 O(n) complexity  */
+/*Create a zero matrix of size with n rows and m columns
+Precondition: n, m > 0 */
 TMatrix create_matrix(nat n, nat m);
 
 
-/*Delete the matrix and all its components O(1) complexity*/
+/*Delete the matrix and all its components*/
 void delete_matrix(TMatrix A);
 
 
-/*Num of rows of a matrix*/
+/*Number of rows of a matrix*/
 nat rows(TMatrix A);
 
-/*Num of cols of a matrix*/
+/*Number of cols of a matrix*/
 nat cols(TMatrix A);
 
-/*Insert a number in the i rown and j column  O(1) complexity */
-/*Precondition: i and j are in the allowed matrix index*/
+/*Insert a number in the i row and j column*/
+/*Precondition: i and j are on the allowed matrix index*/
 void insert_data(TMatrix A,nat row, nat col,double data);
 
-/*Prints a matrix O(n*m) complexity*/
+/*Displays A*/
 void display_matrix(TMatrix A);
 
 
-/*Returns  the transpose of matrix O(n*m) complexity*/
-/*TMatrix transpose(TMatrix matrix);*/
+/*Returns A transpose*/
 TMatrix transpose(TMatrix A);
 
 
@@ -41,13 +40,13 @@ TMatrix sum_matrices(TMatrix A, TMatrix B);
 
 
 
-/*Return subtraction betweehn A and B (A-B)*/
+/*Return subtraction between A and B (A-B)*/
 /*Preconditions: shapes of matrices are equal*/
 TMatrix substract_matrices(TMatrix A, TMatrix B);
 
 
 /*Returns the matrix multiplication between A matrix and B matrix*/
-/*Precondition: A columns number and B rows number are equal*/
+/*Precondition: rows(A) == cols(B)*/
 TMatrix multiply(TMatrix A, TMatrix B);
 
 
@@ -57,14 +56,14 @@ TMatrix multiply(TMatrix A, TMatrix B);
 void swap_rows_cols(TMatrix A, nat i, nat j,bool rows);
 
 
-/*Copy data of matrix A in another*/
+/*Copy data of matrix A in another allocating new memory*/
 TMatrix copy(TMatrix A);
 
 /*Returns  i column of matrix A*/
 /*Precondition: 0 < i < cols(A)*/
 TMatrix sub_column(TMatrix A, nat i);
 
-/*Fills i-th column of A with data on D matrix */
+/*Fills i-th column of A with data in D matrix */
 /*Precondition, D is a matrix with  one column and rows(A) rows*/
 void fill_column(TMatrix A, nat i, TMatrix D);
 
@@ -73,11 +72,11 @@ void fill_column(TMatrix A, nat i, TMatrix D);
 /*A shape greather than 1x1*/
 TMatrix submatrix(TMatrix A, nat row_index,nat col_index);
 
-/*Retuns the determinant of Matrix A*/
+/*Retuns  A determinant*/
 /*Precondition: non singular matrix, square matrix*/
 double det(TMatrix A);
 
-/*Return inverse of the matrix*/
+/*Returns A inverse*/
 /*Precondition: Non singular matrix, square matrix*/
 TMatrix inverse(TMatrix A);
 
