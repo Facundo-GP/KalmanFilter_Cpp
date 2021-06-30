@@ -38,7 +38,7 @@ It's also had the implementation of Kalman Filter and EKF itself, on the functio
 
  <br>
 
-## Include directory
+## include directory
 
 Contains header files.
  
