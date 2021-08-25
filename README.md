@@ -2,7 +2,7 @@
 
 
 
-# Kalman Filter and Extended Kalman Filter implemented on C++.
+# Kalman Filter and Extended Kalman Filter implemented on C++
 
  <br>
 
