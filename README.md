@@ -39,7 +39,7 @@ Contains the matrix TAD implementation named TMatrix with all the operations nee
 
 ### kalman.cpp
 
-Contains the Kalman_func TAD, who give an easy way to implement matrix and state update functions for EKF. Examples of use are shown on Examples section.
+Contains the Kalman_func ADT, who give an easy way to implement matrix and state update functions for EKF. Examples of use are shown on Examples section.
 
 Also, it has the implementation of the Kalman filter based on TMatrix types, this module includes functions to calculate kalman gain, state projection, P projection, and others for both, Kalman Filter and EKF.
 
